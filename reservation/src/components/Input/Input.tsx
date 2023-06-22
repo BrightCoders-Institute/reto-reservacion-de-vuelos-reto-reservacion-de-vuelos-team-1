@@ -1,58 +1,45 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Image } from 'react-native';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 
-export const Input = () => {
+import { styles } from './style';
+
+interface InputProps {
+  title: string;
+  hint: string;
+}
+
+export const Input: React.FC<InputProps> = ({title, hint}) => {
   const [text, onChangeText] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
-    <View>
-        {/* <Image 
-        source={require('../assets/images/icons/search.png')}
-        style = {styles.icon1}/> */}
-        <TextInput
-        style={styles.input}
+    <>
+      <Text>{title}</Text>
+      <TextInput
+        style={[
+          styles.input, 
+          isFocused ? focusedStyle.inputFocused : null,
+        ]}
         onChangeText={onChangeText}
         value={text}
-        placeholder="Email"
-        />
-        <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-        placeholder="Contraseña"
-        />
-        {/* <Image 
-        source={require('../assets/images/icons/micro.png')}
-        style = {styles.icon2}/> */}
-    </View>
+        placeholder={hint}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+    </>
   );
 };
 
-const styles = StyleSheet.create({
-    input: {
-      height: 40,
-      margin: 12,
-      backgroundColor: 'dimgray',
-      padding: 10,
-      borderRadius: 10,
-      textAlign: 'center',
-    },
-    icon1: {
-        width: 20,
-        height: 25,
-        tintColor:'white',
-        position: 'absolute',
-        top: 20,
-        zIndex: 1,
-        left: 25,
-    },
-    icon2: {
-      width: 25,
-      height: 25,
-      tintColor:'white',
-      position: 'absolute',
-      top: 20,
-      zIndex: 1,
-      left: 315,
-      marginRight: 1,
-  },
-  });
+const focusedStyle = StyleSheet.create({
+  inputFocused: {
+    borderColor: '#5C6EF8'
+  }
+});

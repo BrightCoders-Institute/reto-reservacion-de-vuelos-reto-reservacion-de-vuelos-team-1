@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-interface AppProps {
+interface CheckBoxProps {
     description: string;
 }
 
-const App: React.FC<AppProps> = ({ description }) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({ description }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
     return (
-        <View style={styles.container}>
+        <>
         <View style={styles.checkboxContainer}>
-            <CheckBox
-                disabled={false}
-                value={toggleCheckBox}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            <BouncyCheckbox
+                size={25}
+                onPress={() => {setToggleCheckBox(!toggleCheckBox)}}
+                bounceEffectIn={0.8}
             />
             <Text style={styles.label}>{description}</Text>
         </View>
         <Text>Is CheckBox selected: {toggleCheckBox ? 'Si' : 'No'}</Text>
-        </View>
+        </>
     );
 };
 
@@ -41,5 +41,3 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
-
-export default App;
