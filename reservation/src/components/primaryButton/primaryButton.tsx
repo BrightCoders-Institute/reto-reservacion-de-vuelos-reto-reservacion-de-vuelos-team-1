@@ -1,22 +1,30 @@
 import React from 'react';
-import { TouchableOpacity, Text,View } from 'react-native';
-import styles from './styles'
+import {TouchableOpacity, Text, View} from 'react-native';
+import styles from './styles';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  isActive: boolean;
+  isDisabled?: boolean;
 }
 
-const primaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive }) => {
-
-    const buttonStyles=[isActive? styles.buttonActive: styles.buttonInActive];
+const primaryButton: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  isDisabled = false,
+}) => {
+  const buttonStyles = [
+    isDisabled ? styles.buttonInActive : styles.buttonActive,
+  ];
 
   return (
     <View>
-    <TouchableOpacity style={buttonStyles} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={buttonStyles}
+        onPress={onPress}
+        disabled={isDisabled}>
+        <Text style={styles.buttonText}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

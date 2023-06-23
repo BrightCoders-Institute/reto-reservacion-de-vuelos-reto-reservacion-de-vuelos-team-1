@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {TextInput, Text, StyleSheet} from 'react-native';
 
-import { styles } from './style';
+import {styles} from './style';
 
 interface InputProps {
   title: string;
   hint: string;
+  value: string;
+  handleChange: (text: string) => void;
+  isShowError?: boolean;
+  errorMessage?: string;
 }
 
-export const Input: React.FC<InputProps> = ({title, hint}) => {
-  const [text, onChangeText] = useState('');
+export const Input: React.FC<InputProps> = ({
+  title,
+  hint,
+  handleChange,
+  value,
+  isShowError = false,
+  errorMessage = '',
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -24,22 +34,20 @@ export const Input: React.FC<InputProps> = ({title, hint}) => {
     <>
       <Text>{title}</Text>
       <TextInput
-        style={[
-          styles.input, 
-          isFocused ? focusedStyle.inputFocused : null,
-        ]}
-        onChangeText={onChangeText}
-        value={text}
-        placeholder={hint}
-        onFocus={handleFocus}
         onBlur={handleBlur}
+        onChangeText={handleChange}
+        onFocus={handleFocus}
+        placeholder={hint}
+        style={[styles.input, isFocused ? focusedStyle.inputFocused : null]}
+        value={value}
       />
+      {isShowError && <Text>{errorMessage}</Text>}
     </>
   );
 };
 
 const focusedStyle = StyleSheet.create({
   inputFocused: {
-    borderColor: '#5C6EF8'
-  }
+    borderColor: '#5C6EF8',
+  },
 });
