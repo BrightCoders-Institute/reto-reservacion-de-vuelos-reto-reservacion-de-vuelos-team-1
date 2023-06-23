@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, Text, StyleSheet} from 'react-native';
+import {TextInput, Text, StyleSheet, View} from 'react-native';
 
 import {styles} from './style';
 
@@ -10,11 +10,12 @@ interface InputProps {
   handleChange: (text: string) => void;
   isShowError?: boolean;
   errorMessage?: string;
+  width: number;
 }
 
 export const Input: React.FC<InputProps> = ({
   title,
-  hint,
+  hint, width,
   handleChange,
   value,
   isShowError = false,
@@ -31,18 +32,21 @@ export const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <>
-      <Text>{title}</Text>
+    <View style={styles.column}>
+      <Text style={{fontSize: 16}}>{title}</Text>
       <TextInput
         onBlur={handleBlur}
         onChangeText={handleChange}
         onFocus={handleFocus}
         placeholder={hint}
-        style={[styles.input, isFocused ? focusedStyle.inputFocused : null]}
+        style={[styles.input, 
+          isFocused ? focusedStyle.inputFocused : null,
+          {width: width}
+        ]}
         value={value}
       />
       {isShowError && <Text>{errorMessage}</Text>}
-    </>
+    </View>
   );
 };
 
