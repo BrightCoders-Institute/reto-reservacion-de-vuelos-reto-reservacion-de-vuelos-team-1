@@ -1,30 +1,29 @@
 import React from 'react';
-import {TouchableOpacity, Text, View} from 'react-native';
+import { TouchableOpacity, Text, View, Image } from 'react-native';
 import styles from './styles';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  isDisabled?: boolean;
+  isActive: boolean;
+  width?: number;
+  isGoogle?: boolean;
 }
 
-const primaryButton: React.FC<ButtonProps> = ({
-  title,
-  onPress,
-  isDisabled = false,
-}) => {
-  const buttonStyles = [
-    isDisabled ? styles.buttonInActive : styles.buttonActive,
-  ];
+const primaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive, width, isGoogle }) => {
+
+  const buttonStyles=[isActive? styles.buttonActive: styles.buttonInActive];
+
+  const googleLogo = '../../assets/google-logo.png';
 
   return (
     <View>
-      <TouchableOpacity
-        style={buttonStyles}
-        onPress={onPress}
-        disabled={isDisabled}>
+    <TouchableOpacity style={[buttonStyles, {width: width}]} onPress={onPress}>
+      <View style={ styles.row }>
+        {isGoogle? <Image style={styles.icon} source={require(googleLogo)} /> : null}
         <Text style={styles.buttonText}>{title}</Text>
-      </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
     </View>
   );
 };

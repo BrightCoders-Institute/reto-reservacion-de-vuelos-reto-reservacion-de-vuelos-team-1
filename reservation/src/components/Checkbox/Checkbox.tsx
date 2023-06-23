@@ -10,22 +10,20 @@ interface CheckBoxProps {
 export const CheckBox: React.FC<CheckBoxProps> = ({description, onChange}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
-  return (
-    <>
-      <View style={styles.checkboxContainer}>
-        <BouncyCheckbox
-          size={25}
-          onPress={() => {
-            setToggleCheckBox(!toggleCheckBox);
-            onChange();
-          }}
-          bounceEffectIn={0.8}
-        />
-        <Text style={styles.label}>{description}</Text>
-      </View>
-      {/* <Text>Is CheckBox selected: {toggleCheckBox ? 'Si' : 'No'}</Text> */}
-    </>
-  );
+    return (
+        <>
+        <View style={styles.checkboxContainer}>
+            <BouncyCheckbox
+                size={25}
+                onPress={() => {setToggleCheckBox(!toggleCheckBox)}}
+                bounceEffectIn={0.8}
+                fillColor='#5C6EF8'
+                style={{marginVertical: '3%'}}
+            />
+            <Text style={styles.label}>{description}</Text>
+        </View>
+        </>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -37,9 +35,6 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  checkbox: {
-    marginRight: 8,
   },
   label: {
     fontSize: 16,
