@@ -17,8 +17,8 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { AnchorButton } from '../../components/AnchorButton/AnchorButton';
 
 import styles from './style';
-import {initialValues, signUpSchema} from './SignUpScreenSchema';
-export const SignUpScreen = () => {
+import {initialValues, loginScreenSchema} from './LoginScreenSchema';
+export const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
   const onSubmit = async (values: any) => {
@@ -34,25 +34,19 @@ export const SignUpScreen = () => {
     <>
         <Formik
           initialValues={initialValues}
-          validationSchema={signUpSchema}
+          validationSchema={loginScreenSchema}
           onSubmit={values => onSubmit(values)}>
           {({
             handleChange,
             handleSubmit,
             errors,
             touched,
-            values: {name, email, password, privacyTerms, updateProducts},
+            values: {email, password},
             setFieldValue,
           }) => (
             <View style={[styles.column, {backgroundColor: '#ffffff'}]}>
-              <Text style={styles.screenTitle}>Sign Up</Text>
-              <Input
-                title="First name"
-                hint="John"
-                handleChange={handleChange('name')}
-                value={name}
-                width={wp('80%')}
-              />
+              <Text style={styles.screenTitle}>Login</Text>
+
               <Input
                 errorMessage={errors.email}
                 handleChange={handleChange('email')}
@@ -71,19 +65,10 @@ export const SignUpScreen = () => {
                 value={password}
                 width={wp('80%')}
               />
-              <View style={[styles.checboxContainer, {width:wp('80%')}]}>
-                        <CheckBox
-                            description='I agree with the Terms and Privacy Policy'
-                            onChange={() => {}} //TODO: Del onchange
-                        />
-                        <CheckBox
-                            description='Subscribe to recieve product updates.'
-                            onChange={() => {}} //TODO: Del onchange
-                        />
-              </View>
+
               <PrimaryButton
                 isActive={Object.values(errors).length >= 1} //TODO
-                title="Sign up"
+                title="Login"
                 onPress={() => {
                   handleSubmit();
                 }}
@@ -91,15 +76,15 @@ export const SignUpScreen = () => {
               />
               <Text style={styles.textOr}>or</Text>
                     <PrimaryButton
-                        title='Sign Up with Google'
+                        title='Login with Google'
                         onPress={()=>{navigation.navigate('HomeScreen')}}
                         isActive={false}
                         width={wp('70%')}
                         isGoogle={true}
                     />
                     <View style={[styles.row, {height: wp('20%')}]}>
-                        <Text style={[styles.textAccount, {marginRight: wp('2%')}]}>Already have an account?</Text>
-                        <AnchorButton title={'Log In'} onPress={()=>{navigation.navigate('LoginScreen')}} />
+                        <Text style={[styles.textAccount, {marginRight: wp('2%')}]}>Don't have an account?</Text>
+                        <AnchorButton title={'Sign Up'} onPress={()=>{navigation.navigate('SignUpScreen')}} />
                     </View>
             </View>
           )}
