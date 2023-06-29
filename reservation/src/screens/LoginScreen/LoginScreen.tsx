@@ -47,7 +47,7 @@ export const LoginScreen = () => {
             <View style={[styles.column, {backgroundColor: '#ffffff'}]}>
               <Text style={styles.screenTitle}>Login</Text>
 
-              <Input
+              <Input 
                 errorMessage={errors.email}
                 handleChange={handleChange('email')}
                 hint="example@gmail.com"

@@ -33,7 +33,7 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <View style={styles.column}>
-      <Text style={{fontSize: 16}}>{title}</Text>
+      <Text style={{fontSize: 16, color: 'gray'}}>{title}</Text>
       <TextInput
         onBlur={handleBlur}
         onChangeText={handleChange}
