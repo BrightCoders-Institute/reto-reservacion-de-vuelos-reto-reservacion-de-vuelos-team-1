@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Text,
@@ -7,7 +7,7 @@ import {
 
 import { Input } from '../../components/Input/Input';
 import { CheckBox } from '../../components/Checkbox/Checkbox';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import { PrimaryButton } from '../../components/PrimaryButton/primaryButton';
 
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
@@ -18,15 +18,27 @@ import { AnchorButton } from '../../components/AnchorButton/AnchorButton';
 
 import styles from './style';
 import {initialValues, loginScreenSchema} from './LoginScreenSchema';
+
+import { FIREBASE_AUTH } from '../../../config/firebase-config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 export const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const auth = FIREBASE_AUTH;
+
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     try {
-      console.log(values);
+      const response = signInWithEmailAndPassword(auth, values.email, values.password);
+      console.log(response);
       navigation.navigate('HomeScreen');
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,6 +76,7 @@ export const LoginScreen = () => {
                 title="Password"
                 value={password}
                 width={wp('80%')}
+                isPassword={true}
               />
 
               <PrimaryButton

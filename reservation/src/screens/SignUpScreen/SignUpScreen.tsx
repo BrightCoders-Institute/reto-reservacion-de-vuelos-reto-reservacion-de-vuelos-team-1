@@ -1,36 +1,57 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import {
     Text,
-    View
+    View,
+    ActivityIndicator
 } from 'react-native';
 
 import { Input } from '../../components/Input/Input';
 import { CheckBox } from '../../components/Checkbox/Checkbox';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import { PrimaryButton } from '../../components/PrimaryButton/primaryButton';
 
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+
 import { RootStackParams } from '../../navigation/Navigator';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { AnchorButton } from '../../components/AnchorButton/AnchorButton';
 
 import styles from './style';
 import {initialValues, signUpSchema} from './SignUpScreenSchema';
+
+import { FIREBASE_AUTH } from '../../../config/firebase-config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 export const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const auth = FIREBASE_AUTH;
+
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     try {
-      console.log(values);
+      const response = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      console.log(response);
       navigation.navigate('HomeScreen');
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+    } finally {
+      setIsLoading(false)
     }
   };
 
   return (
+    isLoading ?
+    <>
+      <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#9E9E9E"/>
+        </View>
+    </>
+    :
     <>
         <Formik
           initialValues={initialValues}
@@ -70,19 +91,20 @@ export const SignUpScreen = () => {
                 title="Password"
                 value={password}
                 width={wp('80%')}
+                isPassword={true}
               />
               <View style={[styles.checboxContainer, {width:wp('80%')}]}>
                         <CheckBox
                             description='I agree with the Terms and Privacy Policy'
-                            onChange={() => {}} //TODO: Del onchange
+                            handleChange={() => handleChange(!privacyTerms)} //TODO: Handle Change
                         />
                         <CheckBox
                             description='Subscribe to recieve product updates.'
-                            onChange={() => {}} //TODO: Del onchange
+                            handleChange={() => handleChange(!updateProducts)}
                         />
               </View>
               <PrimaryButton
-                isActive={Object.values(errors).length >= 1} //TODO
+                isActive={Object.values(errors).length >= 1}
                 title="Sign up"
                 onPress={() => {
                   handleSubmit();

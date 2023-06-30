@@ -10,7 +10,7 @@ interface ButtonProps {
   isGoogle?: boolean;
 }
 
-const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive, width, isGoogle }) => {
+export const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive, width, isGoogle }) => {
 
   const buttonStyles=[isActive? styles.buttonActive: styles.buttonInActive];
 
@@ -27,5 +27,3 @@ const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive, width,
     </View>
   );
 };
-
-export default PrimaryButton;
