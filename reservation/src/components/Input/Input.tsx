@@ -11,6 +11,7 @@ interface InputProps {
   isShowError?: boolean;
   errorMessage?: string;
   width: number;
+  isPassword?: boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ export const Input: React.FC<InputProps> = ({
   value,
   isShowError = false,
   errorMessage = '',
+  isPassword
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -33,7 +35,7 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <View style={styles.column}>
-      <Text style={{fontSize: 16}}>{title}</Text>
+      <Text style={{fontSize: 16, color: 'gray'}}>{title}</Text>
       <TextInput
         onBlur={handleBlur}
         onChangeText={handleChange}
@@ -44,6 +46,7 @@ export const Input: React.FC<InputProps> = ({
           {width: width}
         ]}
         value={value}
+        secureTextEntry={isPassword ? true : false}
       />
       {isShowError && <Text>{errorMessage}</Text>}
     </View>

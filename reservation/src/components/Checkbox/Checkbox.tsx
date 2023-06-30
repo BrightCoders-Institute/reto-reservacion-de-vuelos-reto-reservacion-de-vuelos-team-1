@@ -4,10 +4,10 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 interface CheckBoxProps {
   description: string;
-  onChange: () => void;
+  handleChange: (value: boolean) => void;
 }
 
-export const CheckBox: React.FC<CheckBoxProps> = ({description, onChange}) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({description, handleChange}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
     return (
@@ -15,7 +15,9 @@ export const CheckBox: React.FC<CheckBoxProps> = ({description, onChange}) => {
         <View style={styles.checkboxContainer}>
             <BouncyCheckbox
                 size={25}
-                onPress={() => {setToggleCheckBox(!toggleCheckBox)}}
+                onPress={() => {
+                  setToggleCheckBox(!toggleCheckBox)
+                }}
                 bounceEffectIn={0.8}
                 fillColor='#5C6EF8'
                 style={{marginVertical: '3%'}}
@@ -38,5 +40,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
+    color: 'gray',
   },
 });
