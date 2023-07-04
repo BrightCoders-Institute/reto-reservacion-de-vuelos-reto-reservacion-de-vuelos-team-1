@@ -5,12 +5,12 @@ import styles from './styles';
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  isActive: boolean;
+  isActive?: boolean;
   width?: number;
   isGoogle?: boolean;
 }
 
-export const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive, width, isGoogle }) => {
+export const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, isActive = false, width, isGoogle }) => {
 
   const buttonStyles=[isActive? styles.buttonActive: styles.buttonInActive];
 

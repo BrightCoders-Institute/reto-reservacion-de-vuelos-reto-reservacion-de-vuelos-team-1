@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
 import {
+  ActivityIndicator,
+    Alert,
     Text,
     View
 } from 'react-native';
 
 import { Input } from '../../components/Input/Input';
-import { CheckBox } from '../../components/Checkbox/Checkbox';
 import { PrimaryButton } from '../../components/PrimaryButton/primaryButton';
 
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParams } from '../../navigation/Navigator';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { AnchorButton } from '../../components/AnchorButton/AnchorButton';
 
@@ -21,7 +20,8 @@ import {initialValues, loginScreenSchema} from './LoginScreenSchema';
 
 import { FIREBASE_AUTH } from '../../../config/firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParams } from '../../navigation/Navigator';
 export const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
@@ -32,17 +32,24 @@ export const LoginScreen = () => {
   const onSubmit = async (values: any) => {
     setIsLoading(true);
     try {
-      const response = signInWithEmailAndPassword(auth, values.email, values.password);
-      console.log(response);
-      navigation.navigate('HomeScreen');
+      const response = await signInWithEmailAndPassword(auth, values.email, values.password);
+      const user = response.user;
+      if(user) navigation.navigate('HomeScreen')
     } catch (error) {
-      console.log(error);
+      Alert.alert('User not found', 'Please check your credentials'); 
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
+    isLoading ?
+    <>
+      <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#5C6EF8"/>
+        </View>
+    </>
+    :
     <>
         <Formik
           initialValues={initialValues}
@@ -58,7 +65,6 @@ export const LoginScreen = () => {
           }) => (
             <View style={[styles.column, {backgroundColor: '#ffffff'}]}>
               <Text style={styles.screenTitle}>Login</Text>
-
               <Input 
                 errorMessage={errors.email}
                 handleChange={handleChange('email')}
@@ -80,21 +86,13 @@ export const LoginScreen = () => {
               />
 
               <PrimaryButton
-                isActive={Object.values(errors).length >= 1} //TODO
+                isActive={Object.values(errors).length <= 1} //TODO
                 title="Login"
                 onPress={() => {
                   handleSubmit();
                 }}
                 width={wp('70%')}
               />
-              <Text style={styles.textOr}>or</Text>
-                    <PrimaryButton
-                        title='Login with Google'
-                        onPress={()=>{navigation.navigate('HomeScreen')}}
-                        isActive={false}
-                        width={wp('70%')}
-                        isGoogle={true}
-                    />
                     <View style={[styles.row, {height: wp('20%')}]}>
                         <Text style={[styles.textAccount, {marginRight: wp('2%')}]}>Don't have an account?</Text>
                         <AnchorButton title={'Sign Up'} onPress={()=>{navigation.navigate('SignUpScreen')}} />

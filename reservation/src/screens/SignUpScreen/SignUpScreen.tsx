@@ -3,7 +3,8 @@ import React,{useState} from 'react';
 import {
     Text,
     View,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert,
 } from 'react-native';
 
 import { Input } from '../../components/Input/Input';
@@ -13,8 +14,8 @@ import { PrimaryButton } from '../../components/PrimaryButton/primaryButton';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
 import { RootStackParams } from '../../navigation/Navigator';
+
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { AnchorButton } from '../../components/AnchorButton/AnchorButton';
 
@@ -34,11 +35,12 @@ export const SignUpScreen = () => {
   const onSubmit = async (values: any) => {
     setIsLoading(true);
     try {
-      const response = await createUserWithEmailAndPassword(auth, values.email, values.password);
-      console.log(response);
-      navigation.navigate('HomeScreen');
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      const user = auth.currentUser;
+      //TODO: Register user name
+      if(user) navigation.navigate('HomeScreen')
     } catch (error: any) {
-      console.log(error);
+      Alert.alert('Error', error); 
     } finally {
       setIsLoading(false)
     }
@@ -48,7 +50,7 @@ export const SignUpScreen = () => {
     isLoading ?
     <>
       <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
+          <ActivityIndicator size="large" color="#5C6EF8"/>
         </View>
     </>
     :
@@ -104,21 +106,13 @@ export const SignUpScreen = () => {
                         />
               </View>
               <PrimaryButton
-                isActive={Object.values(errors).length >= 1}
+                isActive={Object.values(errors).length <= 1}
                 title="Sign up"
                 onPress={() => {
                   handleSubmit();
                 }}
                 width={wp('70%')}
               />
-              <Text style={styles.textOr}>or</Text>
-                    <PrimaryButton
-                        title='Sign Up with Google'
-                        onPress={()=>{navigation.navigate('HomeScreen')}}
-                        isActive={false}
-                        width={wp('70%')}
-                        isGoogle={true}
-                    />
                     <View style={[styles.row, {height: wp('20%')}]}>
                         <Text style={[styles.textAccount, {marginRight: wp('2%')}]}>Already have an account?</Text>
                         <AnchorButton title={'Log In'} onPress={()=>{navigation.navigate('LoginScreen')}} />
