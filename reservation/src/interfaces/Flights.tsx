@@ -1,9 +1,11 @@
 interface Flights {
-    id: string;
-    origin: string;
-    destination:string;
-    passengers: number;
-    date: Date;
-  }
+  id: string;
+  originCountry: string;
+  originCity: string;
+  destinationCountry: string;
+  destinationCity: string;
+  passengers: string;
+  date: string;
+}
 
-  export default Flights;
+export default Flights;
