@@ -9,6 +9,7 @@ import {
   NavigationContainer,
 } from '@react-navigation/native';
 import {Navigation} from './src/navigation/Navigator';
+import {MyFlightsScreen} from './src/screens/MyFlightsScreen/MyFlightsScreen';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -25,9 +26,10 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <NavigationContainer theme={theme}>
+      {/* <NavigationContainer theme={theme}>
         <Navigation />
-      </NavigationContainer>
+      </NavigationContainer> */}
+      <MyFlightsScreen />
     </SafeAreaView>
   );
 }
