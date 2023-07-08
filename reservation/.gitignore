@@ -68,3 +68,7 @@ yarn-error.log
 confing
 
 .env
+
+yarn.lock
+
+package-lock.json
