@@ -4,6 +4,8 @@ import styles from './style';
 import {AddButton} from '../../components/AddButton/AddButton';
 import FlightsList from '../../components/FlightsList/FlightsList';
 import Flights from '../../interfaces/Flights';
+import {FIREBASE_AUTH} from '../../../config/firebase-config';
+import {AnchorButton} from '../../components/AnchorButton/AnchorButton';
 
 //TODO: Retrieve from backend
 const flightsData: Flights[] = [
@@ -28,9 +30,14 @@ const flightsData: Flights[] = [
 ];
 
 export const MyFlightsScreen = () => {
+  const handleLogOut = () => {
+    FIREBASE_AUTH.signOut();
+  };
+
   return (
     <View style={styles.column}>
       <Text style={styles.screenTitle}>My Flights</Text>
+      <AnchorButton title="Logout" onPress={handleLogOut} />
       <FlightsList data={flightsData} />
       {/* //TODO: Navigate to bookings */}
       <AddButton onPress={() => {}} />
