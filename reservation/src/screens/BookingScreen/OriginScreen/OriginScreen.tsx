@@ -8,27 +8,36 @@ import {PrimaryButton} from '../../../components/PrimaryButton/primaryButton';
 import {DropDown} from '../../../components/DropDown/DropDown';
 import CardFlight from '../../../components/CardFlight/CardFlight';
 import {placesData} from '../../../assets/places_data';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParams} from '../../../navigation/Navigator';
 
-export const OriginScreen = () => {
-  const [origin, setOrigin] = useState('');
+import Flights from '../../../interfaces/Flights';
+
+export const OriginScreen = ({recievedProp}) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
+
+  const [flight, setflight] = useState<Flights>({
+    id: '',
+    originCountry: '',
+    originCity: '',
+    destinationCountry: '',
+    destinationCity: '',
+    date: '',
+    passengers: '',
+  });
 
   return (
     <View style={styles.container}>
       {/* TODO: Adapt card to recieve dropdown info */}
-      <CardFlight
-        id=""
-        originCountry=""
-        originCity=""
-        destinationCountry=""
-        destinationCity=""
-        date=""
-        passengers=""
-      />
+      <CardFlight flight={flight} />
       <Text style={styles.header}>Where are you now?</Text>
       <DropDown width={wp('70%')} data={placesData} />
       <PrimaryButton
         title="Next"
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate('DestinationScreen');
+        }}
         isActive={true}
         width={wp('70%')}
       />

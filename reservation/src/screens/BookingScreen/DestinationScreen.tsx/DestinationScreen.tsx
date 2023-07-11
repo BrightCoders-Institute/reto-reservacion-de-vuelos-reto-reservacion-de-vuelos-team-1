@@ -7,24 +7,27 @@ import {placesData} from '../../../assets/places_data';
 import CardFlight from '../../../components/CardFlight/CardFlight';
 import {DropDown} from '../../../components/DropDown/DropDown';
 import {PrimaryButton} from '../../../components/PrimaryButton/primaryButton';
+import Flights from '../../../interfaces/Flights';
 
 import {styles} from './styles';
 
 export const DestinationScreen = () => {
   const [destination, setDestination] = useState('');
 
+  const [flight, setflight] = useState<Flights>({
+    id: '',
+    originCountry: '',
+    originCity: '',
+    destinationCountry: '',
+    destinationCity: '',
+    date: '',
+    passengers: '',
+  });
+
   return (
     <View style={styles.container}>
       {/* TODO: Adapt card to recieve dropdown info */}
-      <CardFlight
-        id=""
-        originCountry=""
-        originCity=""
-        destinationCountry=""
-        destinationCity=""
-        date=""
-        passengers=""
-      />
+      <CardFlight flight={flight} />
       <Text style={styles.header}>Where will you be flying to?</Text>
       <DropDown width={wp('70%')} data={placesData} />
       <PrimaryButton

@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {SignUpScreen} from '../screens/SignUpScreen/SignUpScreen';
-import {HomeScreen} from '../screens/HomeScreen/HomeScreen';
+import {OriginScreen} from '../screens/BookingScreen/OriginScreen/OriginScreen';
+import {DestinationScreen} from '../screens/BookingScreen/DestinationScreen.tsx/DestinationScreen';
 import {LoginScreen} from '../screens/LoginScreen/LoginScreen';
 import {MyFlightsScreen} from '../screens/MyFlightsScreen/MyFlightsScreen';
 
@@ -16,6 +17,8 @@ export type RootStackParams = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
   MyFlightsScreen: undefined;
+  OriginScreen: undefined;
+  DestinationScreen: undefined;
 };
 
 export const Navigation = () => {
@@ -28,18 +31,22 @@ export const Navigation = () => {
   }, []);
 
   return (
-    <Stack.Navigator
-      initialRouteName="LoginScreen"
-      screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName="LoginScreen">
       {user ? (
-        //Logged User
-        <Stack.Group>
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
-          <Stack.Screen name="MyFlightsScreen" component={MyFlightsScreen} />
+        <Stack.Group screenOptions={{headerShown: true}}>
+          <Stack.Screen
+            name="MyFlightsScreen"
+            component={MyFlightsScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="OriginScreen" component={OriginScreen} />
+          <Stack.Screen
+            name="DestinationScreen"
+            component={DestinationScreen}
+          />
         </Stack.Group>
       ) : (
-        //Not Logged User
-        <Stack.Group>
+        <Stack.Group screenOptions={{headerShown: false}}>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         </Stack.Group>
