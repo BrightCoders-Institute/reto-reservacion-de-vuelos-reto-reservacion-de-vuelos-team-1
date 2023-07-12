@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {ActivityIndicator, Alert, Text, View} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
-import {PrimaryButton} from '../../components/PrimaryButton/primaryButton';
+import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
 
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';

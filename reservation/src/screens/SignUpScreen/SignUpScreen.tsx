@@ -4,7 +4,7 @@ import {Text, View, ActivityIndicator, Alert} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
 import {CheckBox} from '../../components/Checkbox/Checkbox';
-import {PrimaryButton} from '../../components/PrimaryButton/primaryButton';
+import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';

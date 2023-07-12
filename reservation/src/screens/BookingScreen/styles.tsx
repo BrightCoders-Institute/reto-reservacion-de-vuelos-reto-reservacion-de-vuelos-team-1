@@ -6,12 +6,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  screenTitle: {
+  header: {
     fontSize: 26,
-    color: '#5C6EF8',
+    color: '#000000',
     fontWeight: '800',
     marginBottom: 20,
   },
 });
-
 export default styles;

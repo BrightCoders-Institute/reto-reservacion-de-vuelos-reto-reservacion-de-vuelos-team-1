@@ -7,6 +7,10 @@ import Flights from '../../interfaces/Flights';
 import {FIREBASE_AUTH} from '../../../config/firebase-config';
 import {AnchorButton} from '../../components/AnchorButton/AnchorButton';
 
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParams} from '../../navigation/Navigator';
+
 //TODO: Retrieve from backend
 const flightsData: Flights[] = [
   {
@@ -30,6 +34,8 @@ const flightsData: Flights[] = [
 ];
 
 export const MyFlightsScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
+
   const handleLogOut = () => {
     FIREBASE_AUTH.signOut();
   };
@@ -39,8 +45,11 @@ export const MyFlightsScreen = () => {
       <Text style={styles.screenTitle}>My Flights</Text>
       <AnchorButton title="Logout" onPress={handleLogOut} />
       <FlightsList data={flightsData} />
-      {/* //TODO: Navigate to bookings */}
-      <AddButton onPress={() => {}} />
+      <AddButton
+        onPress={() => {
+          navigation.navigate('OriginScreen');
+        }}
+      />
     </View>
   );
 };
