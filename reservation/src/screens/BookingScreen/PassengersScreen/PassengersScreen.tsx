@@ -7,15 +7,11 @@ import CardFlight from '../../../components/CardFlight/CardFlight';
 import Calendar from '../../../components/Calendar/Calendar';
 import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
 
-import styles from './styles';
+import styles from './style';
 import Flights from '../../../interfaces/Flights';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParams} from '../../../navigation/Navigator';
+import {PassengersSelector} from '../../../components/PassengersSelector/PassengersSelector';
 
-export const SelectDateScreen = () => {
-  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
-
+export const PassengersScreen = () => {
   const [flight, setflight] = useState<Flights>({
     id: '',
     originCountry: '',
@@ -27,15 +23,13 @@ export const SelectDateScreen = () => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.column}>
       <CardFlight flight={flight} />
-      <Text style={styles.header}>Select date</Text>
-      <Calendar />
+      <Text style={styles.header}>How many passengers?</Text>
+      <PassengersSelector />
       <PrimaryButton
         title="Next"
-        onPress={() => {
-          navigation.navigate('PassengersScreen');
-        }}
+        onPress={() => {}}
         isActive={true}
         width={wp('70%')}
       />

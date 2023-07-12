@@ -6,6 +6,8 @@ import {OriginScreen} from '../screens/BookingScreen/OriginScreen/OriginScreen';
 import {DestinationScreen} from '../screens/BookingScreen/DestinationScreen.tsx/DestinationScreen';
 import {LoginScreen} from '../screens/LoginScreen/LoginScreen';
 import {MyFlightsScreen} from '../screens/MyFlightsScreen/MyFlightsScreen';
+import {SelectDateScreen} from '../screens/BookingScreen/SelectDateScreen/SelectDateScreen';
+import {PassengersScreen} from '../screens/BookingScreen/PassengersScreen/PassengersScreen';
 
 import {onAuthStateChanged, User} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../config/firebase-config';
@@ -19,6 +21,8 @@ export type RootStackParams = {
   MyFlightsScreen: undefined;
   OriginScreen: undefined;
   DestinationScreen: undefined;
+  SelectDateScreen: undefined;
+  PassengersScreen: undefined;
 };
 
 export const Navigation = () => {
@@ -44,6 +48,8 @@ export const Navigation = () => {
             name="DestinationScreen"
             component={DestinationScreen}
           />
+          <Stack.Screen name="SelectDateScreen" component={SelectDateScreen} />
+          <Stack.Screen name="PassengersScreen" component={PassengersScreen} />
         </Stack.Group>
       ) : (
         <Stack.Group screenOptions={{headerShown: false}}>

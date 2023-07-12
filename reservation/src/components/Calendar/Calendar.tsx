@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions
-} from 'react-native';
-import CalendarPicker, { DateChangedCallback } from 'react-native-calendar-picker';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import CalendarPicker, {
+  DateChangedCallback,
+} from 'react-native-calendar-picker';
 import moment from 'moment';
 
 interface State {
@@ -29,28 +26,19 @@ export default class App extends Component<{}, State> {
   }
 
   render() {
-    const { selectedStartDate } = this.state;
+    const {selectedStartDate} = this.state;
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
-      <View style={styles.container}>
+      <View>
         <CalendarPicker
           onDateChange={this.onDateChange as DateChangedCallback}
           width={Dimensions.get('window').width * 0.8}
           height={Dimensions.get('window').height * 0.7}
         />
-
         <View>
-          <Text>SELECTED DATE: { startDate }</Text>
+          <Text>SELECTED DATE: {startDate}</Text>
         </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width:350,
-    flex: 1,
-    marginTop: 40,
-  },
-});

@@ -4,7 +4,7 @@ import styles from './styles';
 
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import {PrimaryButton} from '../../../components/PrimaryButton/primaryButton';
+import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
 import {DropDown} from '../../../components/DropDown/DropDown';
 import CardFlight from '../../../components/CardFlight/CardFlight';
 import {placesData} from '../../../assets/places_data';
