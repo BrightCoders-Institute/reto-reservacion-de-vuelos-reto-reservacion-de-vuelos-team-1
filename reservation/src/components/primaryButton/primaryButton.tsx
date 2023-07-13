@@ -25,7 +25,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
     <View>
       <TouchableOpacity
         style={[buttonStyles, {width: width}]}
-        onPress={onPress}>
+        onPress={isActive ? onPress : null}>
         <View style={styles.row}>
           {isGoogle ? (
             <Image style={styles.icon} source={require(googleLogo)} />

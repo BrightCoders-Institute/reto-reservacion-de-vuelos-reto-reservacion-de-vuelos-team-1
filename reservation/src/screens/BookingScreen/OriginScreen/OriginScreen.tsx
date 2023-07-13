@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './styles';
 
@@ -12,25 +12,38 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../../navigation/Navigator';
 
-import Flights from '../../../interfaces/Flights';
+import {useSelector} from 'react-redux';
 
-export const OriginScreen = ({recievedProp}) => {
+import {RootState} from '../../../types/types';
+
+const OriginScreen = () => {
+  const originCityValue = useSelector(
+    (state: RootState) => state.counter.originCountry,
+  );
+  const originCountryValue = useSelector(
+    (state: RootState) => state.counter.originCity,
+  );
+  const destinationCityValue = useSelector(
+    (state: RootState) => state.counter.destinationCity,
+  );
+  const destinationCountryValue = useSelector(
+    (state: RootState) => state.counter.destinationCountry,
+  );
+
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
-
-  const [flight, setflight] = useState<Flights>({
-    id: '',
-    originCountry: '',
-    originCity: '',
-    destinationCountry: '',
-    destinationCity: '',
-    date: '',
-    passengers: '',
-  });
 
   return (
     <View style={styles.container}>
-      {/* TODO: Adapt card to recieve dropdown info */}
-      <CardFlight flight={flight} />
+      {originCountryValue ? (
+        <CardFlight
+          originCountry={originCountryValue}
+          originCity={originCityValue}
+          destinationCity={destinationCityValue}
+          destinationCountry={destinationCountryValue}
+        />
+      ) : (
+        <View />
+      )}
       <Text style={styles.header}>Where are you now?</Text>
       <DropDown width={wp('70%')} data={placesData} />
       <PrimaryButton
@@ -38,9 +51,11 @@ export const OriginScreen = ({recievedProp}) => {
         onPress={() => {
           navigation.navigate('DestinationScreen');
         }}
-        isActive={true}
+        isActive={originCountryValue ? true : false}
         width={wp('70%')}
       />
     </View>
   );
 };
+
+export default OriginScreen;

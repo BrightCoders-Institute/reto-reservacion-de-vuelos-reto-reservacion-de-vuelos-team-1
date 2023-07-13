@@ -6,27 +6,30 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {useDispatch} from 'react-redux';
 
 import {
-  addOriginCountry,
-  addOriginCity,
+  addDestinationCity,
+  addDestinationCountry,
 } from '../../redux/slices/booking.slice';
 
-interface DropDownProps {
+interface DropDownDestinationProps {
   width?: number;
   data: {label: string; value: {country: string; city: string}}[];
 }
 
-export const DropDown: React.FC<DropDownProps> = ({width, data}) => {
+export const DropDownDestination: React.FC<DropDownDestinationProps> = ({
+  width,
+  data,
+}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleCountry = (country: string) => {
-    dispatch(addOriginCountry(country));
+    dispatch(addDestinationCountry(country));
   };
 
   const handleCity = (city: string) => {
-    dispatch(addOriginCity(city));
+    dispatch(addDestinationCity(city));
   };
 
   return (

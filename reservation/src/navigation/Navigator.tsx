@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {SignUpScreen} from '../screens/SignUpScreen/SignUpScreen';
-import {OriginScreen} from '../screens/BookingScreen/OriginScreen/OriginScreen';
+import OriginScreen from '../screens/BookingScreen/OriginScreen/OriginScreen';
 import {DestinationScreen} from '../screens/BookingScreen/DestinationScreen.tsx/DestinationScreen';
 import {LoginScreen} from '../screens/LoginScreen/LoginScreen';
 import {MyFlightsScreen} from '../screens/MyFlightsScreen/MyFlightsScreen';
@@ -36,7 +36,7 @@ export const Navigation = () => {
 
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
-      {user ? (
+      {true ? (
         <Stack.Group screenOptions={{headerShown: true}}>
           <Stack.Screen
             name="MyFlightsScreen"

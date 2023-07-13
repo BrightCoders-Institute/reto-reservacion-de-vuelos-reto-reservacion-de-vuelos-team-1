@@ -12,7 +12,17 @@ const FlightsList: React.FC<FlightsListProps> = ({data}) => {
   return (
     <FlatList
       data={data}
-      renderItem={({item}) => <CardFlight flight={item} />}
+      renderItem={({item}) => (
+        <CardFlight
+          destinationCountry={item.destinationCountry}
+          destinationCity={item.destinationCity}
+          originCountry={item.originCountry}
+          originCity={item.originCity}
+          passengers={item.passengers}
+          date={item.date}
+          id={item.id}
+        />
+      )}
       keyExtractor={item => item.id}
     />
   );
