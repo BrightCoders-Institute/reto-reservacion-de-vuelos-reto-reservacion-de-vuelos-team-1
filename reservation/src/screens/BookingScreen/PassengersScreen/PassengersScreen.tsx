@@ -33,6 +33,9 @@ export const PassengersScreen = () => {
   const passengersValue = useSelector(
     (state: RootState) => state.counter.passengers,
   );
+  const dateValue = useSelector(
+    (state: RootState) => state.counter.selectedDate,
+  );
 
   return (
     <View style={styles.column}>
@@ -42,7 +45,7 @@ export const PassengersScreen = () => {
           originCity={originCityValue}
           destinationCity={destinationCityValue}
           destinationCountry={destinationCountryValue}
-          passengers={passengersValue}
+          date={dateValue}
         />
       ) : (
         <View />
@@ -54,7 +57,7 @@ export const PassengersScreen = () => {
         onPress={() => {
           navigation.navigate('RequestReceivedScreen');
         }}
-        isActive={true}
+        isActive={passengersValue ? true : false}
         width={wp('70%')}
       />
     </View>

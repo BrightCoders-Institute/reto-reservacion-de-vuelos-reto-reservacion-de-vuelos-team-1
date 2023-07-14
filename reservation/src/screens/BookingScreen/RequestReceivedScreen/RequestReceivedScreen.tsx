@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import CardFlight from '../../../components/CardFlight/CardFlight';
@@ -29,7 +29,9 @@ export const RequestReceivedScreen = () => {
   const passengersValue = useSelector(
     (state: RootState) => state.counter.passengers,
   );
-
+  const dateValue = useSelector(
+    (state: RootState) => state.counter.selectedDate,
+  );
   return (
     <View style={styles.container}>
       <CardFlight
@@ -38,6 +40,7 @@ export const RequestReceivedScreen = () => {
         destinationCity={destinationCityValue}
         destinationCountry={destinationCountryValue}
         passengers={passengersValue}
+        date={dateValue}
       />
       <Text style={styles.header}>Your request was received.</Text>
 

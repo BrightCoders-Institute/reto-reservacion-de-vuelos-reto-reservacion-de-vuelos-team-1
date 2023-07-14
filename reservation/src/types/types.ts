@@ -6,5 +6,6 @@ export interface RootState {
     destinationCountry: string;
     destinationCity: string;
     passengers: string;
+    selectedDate: string;
   };
 }

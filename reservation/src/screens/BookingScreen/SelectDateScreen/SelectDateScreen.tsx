@@ -1,34 +1,45 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import CardFlight from '../../../components/CardFlight/CardFlight';
-import Calendar from '../../../components/Calendar/Calendar';
+import {Calendar} from '../../../components/Calendar/Calendar';
 import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
 
 import styles from './styles';
-import Flights from '../../../interfaces/Flights';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../../navigation/Navigator';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../types/types';
 
 export const SelectDateScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
-  const [flight, setflight] = useState<Flights>({
-    id: '',
-    originCountry: '',
-    originCity: '',
-    destinationCountry: '',
-    destinationCity: '',
-    date: '',
-    passengers: '',
-  });
-
+  const originCityValue = useSelector(
+    (state: RootState) => state.counter.originCountry,
+  );
+  const originCountryValue = useSelector(
+    (state: RootState) => state.counter.originCity,
+  );
+  const destinationCityValue = useSelector(
+    (state: RootState) => state.counter.destinationCity,
+  );
+  const destinationCountryValue = useSelector(
+    (state: RootState) => state.counter.destinationCountry,
+  );
+  const dateValue = useSelector(
+    (state: RootState) => state.counter.selectedDate,
+  );
   return (
     <View style={styles.container}>
-      <CardFlight flight={flight} />
+      <CardFlight
+        originCountry={originCountryValue}
+        originCity={originCityValue}
+        destinationCity={destinationCityValue}
+        destinationCountry={destinationCountryValue}
+      />
       <Text style={styles.header}>Select date</Text>
       <Calendar />
       <PrimaryButton
@@ -36,7 +47,7 @@ export const SelectDateScreen = () => {
         onPress={() => {
           navigation.navigate('PassengersScreen');
         }}
-        isActive={true}
+        isActive={dateValue ? true : false}
         width={wp('70%')}
       />
     </View>

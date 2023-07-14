@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 interface CounterState {
   value: number;
   originCountry: string;
@@ -7,6 +6,7 @@ interface CounterState {
   destinationCountry: string;
   destinationCity: string;
   passengers: string;
+  selectedDate: string;
 }
 
 const initialState: CounterState = {
@@ -16,6 +16,7 @@ const initialState: CounterState = {
   destinationCountry: '',
   destinationCity: '',
   passengers: '',
+  selectedDate: '',
 };
 
 const counterSlice = createSlice({
@@ -39,9 +40,20 @@ const counterSlice = createSlice({
     },
     addPassengers: (state, action: PayloadAction<string>) => {
       state.passengers = action.payload;
-    }
+    },
+    addDate: (state, action: PayloadAction<string>) => {
+      state.selectedDate = action.payload;
+    },
   },
 });
 
-export const { incrementByAmount, addOriginCountry, addOriginCity, addDestinationCity, addDestinationCountry, addPassengers } = counterSlice.actions;
+export const {
+  incrementByAmount,
+  addOriginCountry,
+  addOriginCity,
+  addDestinationCity,
+  addDestinationCountry,
+  addPassengers,
+  addDate,
+} = counterSlice.actions;
 export default counterSlice.reducer;

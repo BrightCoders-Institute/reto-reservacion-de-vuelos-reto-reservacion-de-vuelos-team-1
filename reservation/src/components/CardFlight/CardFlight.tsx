@@ -3,7 +3,6 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import styles from './style';
 import {useRoute} from '@react-navigation/native';
-import {MyFlightsScreen} from '../../screens/MyFlightsScreen/MyFlightsScreen';
 
 interface CardFlightProps {
   id?: string;

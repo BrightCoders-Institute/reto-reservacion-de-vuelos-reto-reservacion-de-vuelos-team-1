@@ -26,9 +26,6 @@ export const DestinationScreen = () => {
   const originCountryValue = useSelector(
     (state: RootState) => state.counter.originCity,
   );
-  const destinationCityValue = useSelector(
-    (state: RootState) => state.counter.destinationCity,
-  );
   const destinationCountryValue = useSelector(
     (state: RootState) => state.counter.destinationCountry,
   );
@@ -39,8 +36,6 @@ export const DestinationScreen = () => {
         <CardFlight
           originCity={originCityValue}
           originCountry={originCountryValue}
-          destinationCity={destinationCityValue}
-          destinationCountry={destinationCountryValue}
         />
       ) : (
         <View />
