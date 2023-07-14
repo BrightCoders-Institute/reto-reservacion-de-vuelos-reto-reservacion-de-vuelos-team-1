@@ -9,8 +9,8 @@ import {SelectDateScreen} from '../screens/BookingScreen/SelectDateScreen/Select
 import {PassengersScreen} from '../screens/BookingScreen/PassengersScreen/PassengersScreen';
 import {RequestReceivedScreen} from '../screens/BookingScreen/RequestReceivedScreen/RequestReceivedScreen';
 
-// import {onAuthStateChanged, User} from 'firebase/auth';
-// import {FIREBASE_AUTH} from '../../config/firebase-config';
+import {onAuthStateChanged, User} from 'firebase/auth';
+import {FIREBASE_AUTH} from '../../config/firebase-config';
 
 const Stack = createStackNavigator();
 
@@ -27,13 +27,13 @@ export type RootStackParams = {
 };
 
 export const Navigation = () => {
-  // const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  // useEffect(() => {
-  //   onAuthStateChanged(FIREBASE_AUTH, user => {
-  //     setUser(user);
-  //   });
-  // }, []);
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, user => {
+      setUser(user);
+    });
+  }, []);
 
   return (
     <Stack.Navigator initialRouteName="LoginScreen">

@@ -17,28 +17,21 @@ import {RootState} from '../../../types/types';
 export const SelectDateScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
-  const originCityValue = useSelector(
-    (state: RootState) => state.counter.originCountry,
-  );
-  const originCountryValue = useSelector(
-    (state: RootState) => state.counter.originCity,
-  );
-  const destinationCityValue = useSelector(
-    (state: RootState) => state.counter.destinationCity,
-  );
-  const destinationCountryValue = useSelector(
-    (state: RootState) => state.counter.destinationCountry,
-  );
-  const dateValue = useSelector(
-    (state: RootState) => state.counter.selectedDate,
-  );
+  const {
+    originCountry,
+    originCity,
+    destinationCity,
+    destinationCountry,
+    selectedDate,
+  } = useSelector((state: RootState) => state.counter);
+
   return (
     <View style={styles.container}>
       <CardFlight
-        originCountry={originCountryValue}
-        originCity={originCityValue}
-        destinationCity={destinationCityValue}
-        destinationCountry={destinationCountryValue}
+        originCountry={originCountry}
+        originCity={originCity}
+        destinationCity={destinationCity}
+        destinationCountry={destinationCountry}
       />
       <Text style={styles.header}>Select date</Text>
       <Calendar />
@@ -47,7 +40,7 @@ export const SelectDateScreen = () => {
         onPress={() => {
           navigation.navigate('PassengersScreen');
         }}
-        isActive={dateValue ? true : false}
+        isActive={Boolean(selectedDate)}
         width={wp('70%')}
       />
     </View>

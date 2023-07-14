@@ -7,40 +7,30 @@ import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../../navigation/Navigator';
-//Redux
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../types/types';
 
 export const RequestReceivedScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
-  const originCityValue = useSelector(
-    (state: RootState) => state.counter.originCountry,
-  );
-  const originCountryValue = useSelector(
-    (state: RootState) => state.counter.originCity,
-  );
-  const destinationCityValue = useSelector(
-    (state: RootState) => state.counter.destinationCity,
-  );
-  const destinationCountryValue = useSelector(
-    (state: RootState) => state.counter.destinationCountry,
-  );
-  const passengersValue = useSelector(
-    (state: RootState) => state.counter.passengers,
-  );
-  const dateValue = useSelector(
-    (state: RootState) => state.counter.selectedDate,
-  );
+  const {
+    originCountry,
+    originCity,
+    destinationCity,
+    destinationCountry,
+    passengers,
+    selectedDate,
+  } = useSelector((state: RootState) => state.counter);
+
   return (
     <View style={styles.container}>
       <CardFlight
-        originCountry={originCountryValue}
-        originCity={originCityValue}
-        destinationCity={destinationCityValue}
-        destinationCountry={destinationCountryValue}
-        passengers={passengersValue}
-        date={dateValue}
+        originCountry={originCountry}
+        originCity={originCity}
+        destinationCity={destinationCity}
+        destinationCountry={destinationCountry}
+        passengers={passengers}
+        date={selectedDate}
       />
       <Text style={styles.header}>Your request was received.</Text>
 
