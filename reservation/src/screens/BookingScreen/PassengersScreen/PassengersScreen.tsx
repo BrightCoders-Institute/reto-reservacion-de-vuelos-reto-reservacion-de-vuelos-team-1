@@ -1,35 +1,59 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParams} from '../../../navigation/Navigator';
+
 import CardFlight from '../../../components/CardFlight/CardFlight';
-import Calendar from '../../../components/Calendar/Calendar';
 import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
 
 import styles from './style';
-import Flights from '../../../interfaces/Flights';
 import {PassengersSelector} from '../../../components/PassengersSelector/PassengersSelector';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../types/types';
 
 export const PassengersScreen = () => {
-  const [flight, setflight] = useState<Flights>({
-    id: '',
-    originCountry: '',
-    originCity: '',
-    destinationCountry: '',
-    destinationCity: '',
-    date: '',
-    passengers: '',
-  });
+  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
+
+  const originCityValue = useSelector(
+    (state: RootState) => state.counter.originCountry,
+  );
+  const originCountryValue = useSelector(
+    (state: RootState) => state.counter.originCity,
+  );
+  const destinationCityValue = useSelector(
+    (state: RootState) => state.counter.destinationCity,
+  );
+  const destinationCountryValue = useSelector(
+    (state: RootState) => state.counter.destinationCountry,
+  );
+  const passengersValue = useSelector(
+    (state: RootState) => state.counter.passengers,
+  );
 
   return (
     <View style={styles.column}>
-      <CardFlight flight={flight} />
+      {originCountryValue ? (
+        <CardFlight
+          originCountry={originCountryValue}
+          originCity={originCityValue}
+          destinationCity={destinationCityValue}
+          destinationCountry={destinationCountryValue}
+          passengers={passengersValue}
+        />
+      ) : (
+        <View />
+      )}
       <Text style={styles.header}>How many passengers?</Text>
       <PassengersSelector />
       <PrimaryButton
         title="Next"
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate('SelectDateScreen');
+        }}
         isActive={true}
         width={wp('70%')}
       />

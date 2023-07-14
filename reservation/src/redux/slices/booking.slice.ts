@@ -15,7 +15,7 @@ const initialState: CounterState = {
   originCity: '',
   destinationCountry: '',
   destinationCity: '',
-  passengers: ''
+  passengers: '',
 };
 
 const counterSlice = createSlice({
@@ -36,9 +36,12 @@ const counterSlice = createSlice({
     },
     addDestinationCountry: (state, action: PayloadAction<string>) => {
       state.destinationCountry = action.payload;
+    },
+    addPassengers: (state, action: PayloadAction<string>) => {
+      state.passengers = action.payload;
     }
   },
 });
 
-export const { incrementByAmount, addOriginCountry, addOriginCity, addDestinationCity, addDestinationCountry } = counterSlice.actions;
+export const { incrementByAmount, addOriginCountry, addOriginCity, addDestinationCity, addDestinationCountry, addPassengers } = counterSlice.actions;
 export default counterSlice.reducer;
