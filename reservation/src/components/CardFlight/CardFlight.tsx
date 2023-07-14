@@ -22,6 +22,7 @@ const CardFlight: React.FC<CardFlightProps> = ({
   passengers,
   date,
 }) => {
+  console.log(passengers);
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer1}>

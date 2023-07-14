@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import {SignUpScreen} from '../screens/SignUpScreen/SignUpScreen';
 import OriginScreen from '../screens/BookingScreen/OriginScreen/OriginScreen';
 import {DestinationScreen} from '../screens/BookingScreen/DestinationScreen.tsx/DestinationScreen';
@@ -8,6 +7,7 @@ import {LoginScreen} from '../screens/LoginScreen/LoginScreen';
 import {MyFlightsScreen} from '../screens/MyFlightsScreen/MyFlightsScreen';
 import {SelectDateScreen} from '../screens/BookingScreen/SelectDateScreen/SelectDateScreen';
 import {PassengersScreen} from '../screens/BookingScreen/PassengersScreen/PassengersScreen';
+import {RequestReceivedScreen} from '../screens/BookingScreen/RequestReceivedScreen/RequestReceivedScreen';
 
 // import {onAuthStateChanged, User} from 'firebase/auth';
 // import {FIREBASE_AUTH} from '../../config/firebase-config';
@@ -23,6 +23,7 @@ export type RootStackParams = {
   DestinationScreen: undefined;
   SelectDateScreen: undefined;
   PassengersScreen: undefined;
+  RequestReceivedScreen: undefined;
 };
 
 export const Navigation = () => {
@@ -43,13 +44,31 @@ export const Navigation = () => {
             component={MyFlightsScreen}
             options={{headerShown: false}}
           />
-          <Stack.Screen name="OriginScreen" component={OriginScreen} />
+          <Stack.Screen
+            name="OriginScreen"
+            component={OriginScreen}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="DestinationScreen"
             component={DestinationScreen}
+            options={{headerShown: false}}
           />
-          <Stack.Screen name="SelectDateScreen" component={SelectDateScreen} />
-          <Stack.Screen name="PassengersScreen" component={PassengersScreen} />
+          <Stack.Screen
+            name="SelectDateScreen"
+            component={SelectDateScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PassengersScreen"
+            component={PassengersScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="RequestReceivedScreen"
+            component={RequestReceivedScreen}
+            options={{headerShown: false}}
+          />
         </Stack.Group>
       ) : (
         <Stack.Group screenOptions={{headerShown: false}}>
