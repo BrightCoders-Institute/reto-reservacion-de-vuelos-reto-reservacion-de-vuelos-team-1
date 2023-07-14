@@ -36,7 +36,6 @@ export const PassengersSelector = () => {
             '12',
           ]}
           onValueChange={(value: string) => {
-            console.log(value);
             handlePassengers(value);
           }}
         />

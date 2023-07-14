@@ -52,8 +52,6 @@ export const DropDown: React.FC<DropDownProps> = ({width, data}) => {
         onChange={item => {
           setValue(item.label);
           setIsFocus(false);
-          console.log(item.value.country);
-          console.log(item.value.city);
           handleCountry(item.value.country);
           handleCity(item.value.city);
         }}
