@@ -1,10 +1,16 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {Picker} from 'react-native-wheel-pick';
-import {StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import styles from './style';
+//redux
+import {useDispatch} from 'react-redux';
+import {addPassengers} from '../../redux/slices/booking.slice';
 
 export const PassengersSelector = () => {
+  const dispatch = useDispatch();
+  const handlePassengers = (passengers: string) => {
+    dispatch(addPassengers(passengers));
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -30,7 +36,7 @@ export const PassengersSelector = () => {
             '12',
           ]}
           onValueChange={(value: string) => {
-            console.log(value);
+            handlePassengers(value);
           }}
         />
       </View>

@@ -1,6 +1,5 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {View, StatusBar, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {
@@ -9,6 +8,8 @@ import {
   NavigationContainer,
 } from '@react-navigation/native';
 import {Navigation} from './src/navigation/Navigator';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,15 +21,17 @@ function App(): JSX.Element {
   const theme = isDarkMode ? DarkTheme : DefaultTheme;
 
   return (
-    <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <NavigationContainer theme={theme}>
-        <Navigation />
-      </NavigationContainer>
-    </SafeAreaView>
+    <Provider store={store}>
+      <View style={[backgroundStyle, {flex: 1}]}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <NavigationContainer theme={theme}>
+          <Navigation />
+        </NavigationContainer>
+      </View>
+    </Provider>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './styles';
-import {PrimaryButton} from '../../components/PrimaryButton/primaryButton';
+import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
 import {DropDown} from '../../components/DropDown/DropDown';
 
 export const BookingScreen = () => {

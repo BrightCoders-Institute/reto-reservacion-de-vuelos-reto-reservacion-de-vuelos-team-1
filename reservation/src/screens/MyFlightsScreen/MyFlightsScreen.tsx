@@ -11,7 +11,6 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/Navigator';
 
-//TODO: Retrieve from backend
 const flightsData: Flights[] = [
   {
     id: '1',

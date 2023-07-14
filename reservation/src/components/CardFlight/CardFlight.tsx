@@ -2,30 +2,58 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import styles from './style';
-import Flights from '../../interfaces/Flights';
+import {useRoute} from '@react-navigation/native';
 
 interface CardFlightProps {
-  flight: Flights;
+  id?: string;
+  originCountry?: string;
+  originCity?: string;
+  destinationCountry?: string;
+  destinationCity?: string;
+  passengers?: string;
+  date?: string;
 }
 
-const CardFlight: React.FC<CardFlightProps> = ({flight}) => {
+const CardFlight: React.FC<CardFlightProps> = ({
+  id,
+  originCountry,
+  originCity,
+  destinationCountry,
+  destinationCity,
+  passengers,
+  date,
+}) => {
+  const route = useRoute();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.subcontainer1}>
-        <Text style={styles.title}>{flight.originCountry}</Text>
-        <Text style={styles.text}>{flight.originCity}</Text>
-        <Text style={styles.text2}>{flight.date}</Text>
+    <View
+      style={
+        route.name == 'MyFlightsScreen'
+          ? styles.myFlightsContainer
+          : styles.flightContainer
+      }>
+      <View style={styles.originAndDestination}>
+        <View style={styles.origin}>
+          <Text style={styles.title}>{originCountry}</Text>
+          <Text style={styles.text}>{originCity}</Text>
+        </View>
+        <Ionicons
+          style={styles.icon}
+          name="airplane-sharp"
+          size={30}
+          color="#6170f7"
+        />
+        <View style={styles.destination}>
+          <Text style={styles.title}>{destinationCountry}</Text>
+          <Text style={styles.text}>{destinationCity}</Text>
+        </View>
       </View>
-      <Ionicons
-        style={styles.icon}
-        name="airplane-sharp"
-        size={30}
-        color="#6170f7"
-      />
-      <View style={styles.subcontainer2}>
-        <Text style={styles.title}>{flight.destinationCountry}</Text>
-        <Text style={styles.text}>{flight.destinationCity}</Text>
-        <Text style={styles.text2}>{`${flight.passengers} passengers`}</Text>
+
+      <View style={styles.containerDateAndPassengers}>
+        <Text style={styles.text2}>{date}</Text>
+        {passengers && (
+          <Text style={styles.text2}>{`${passengers} passengers`}</Text>
+        )}
       </View>
     </View>
   );
