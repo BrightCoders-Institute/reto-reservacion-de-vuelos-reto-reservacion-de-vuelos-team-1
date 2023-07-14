@@ -47,27 +47,27 @@ export const Navigation = () => {
           <Stack.Screen
             name="OriginScreen"
             component={OriginScreen}
-            options={{headerShown: false}}
+            options={{title: null, headerTintColor: '#6170f7'}}
           />
           <Stack.Screen
             name="DestinationScreen"
             component={DestinationScreen}
-            options={{headerShown: false}}
+            options={{title: null, headerTintColor: '#6170f7'}}
           />
           <Stack.Screen
             name="SelectDateScreen"
             component={SelectDateScreen}
-            options={{headerShown: false}}
+            options={{title: null, headerTintColor: '#6170f7'}}
           />
           <Stack.Screen
             name="PassengersScreen"
             component={PassengersScreen}
-            options={{headerShown: false}}
+            options={{title: null, headerTintColor: '#6170f7'}}
           />
           <Stack.Screen
             name="RequestReceivedScreen"
             component={RequestReceivedScreen}
-            options={{headerShown: false}}
+            options={{title: null, headerTintColor: '#6170f7'}}
           />
         </Stack.Group>
       ) : (

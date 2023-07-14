@@ -1,8 +1,15 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
+  flightContainer: {
+    flexDirection: 'column',
+    width: 390,
+    height: 150,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  myFlightsContainer: {
+    flexDirection: 'column',
     width: 390,
     height: 150,
     justifyContent: 'center',
@@ -10,18 +17,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderBottomColor: 'gray',
   },
-  subcontainer1: {
+  originAndDestination: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+  },
+  origin: {
     alignItems: 'flex-start',
-    flexDirection: 'column',
-    flex: 1,
-  },
-  subcontainer2: {
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-    flex: 1,
-  },
-  subcontainer3: {
-    alignItems: 'flex-end',
     flexDirection: 'column',
     flex: 1,
   },
@@ -36,11 +39,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     margin: 10,
   },
-  text2: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    margin: 10,
-  },
   icon: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -48,6 +46,20 @@ const styles = StyleSheet.create({
     top: 30,
     zIndex: 1,
     left: 185,
+  },
+  destination: {
+    alignItems: 'flex-end',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  containerDateAndPassengers: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  text2: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 10,
   },
 });
 
