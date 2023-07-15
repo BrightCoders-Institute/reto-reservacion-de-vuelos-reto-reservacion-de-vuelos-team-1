@@ -9,6 +9,7 @@ import {SelectDateScreen} from '../screens/BookingScreen/SelectDateScreen/Select
 import {PassengersScreen} from '../screens/BookingScreen/PassengersScreen/PassengersScreen';
 import {RequestReceivedScreen} from '../screens/BookingScreen/RequestReceivedScreen/RequestReceivedScreen';
 
+
 import {onAuthStateChanged, User} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../config/firebase-config';
 
@@ -37,7 +38,7 @@ export const Navigation = () => {
 
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
-      {true ? (
+      {user ? (
         <Stack.Group screenOptions={{headerShown: true}}>
           <Stack.Screen
             name="MyFlightsScreen"
