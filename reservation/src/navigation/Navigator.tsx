@@ -9,9 +9,12 @@ import {SelectDateScreen} from '../screens/BookingScreen/SelectDateScreen/Select
 import {PassengersScreen} from '../screens/BookingScreen/PassengersScreen/PassengersScreen';
 import {RequestReceivedScreen} from '../screens/BookingScreen/RequestReceivedScreen/RequestReceivedScreen';
 
-
 import {onAuthStateChanged, User} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../config/firebase-config';
+
+import {useDispatch} from 'react-redux';
+
+import {saveUserid} from '../redux/slices/booking.slice';
 
 const Stack = createStackNavigator();
 
@@ -30,9 +33,20 @@ export type RootStackParams = {
 export const Navigation = () => {
   const [user, setUser] = useState<User | null>(null);
 
+  const dispatch = useDispatch();
+
+  const handleUserId = (userId: string) => {
+    if (userId) {
+      dispatch(saveUserid(userId));
+    } else {
+      dispatch(saveUserid(''));
+    }
+  };
+
   useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, user => {
       setUser(user);
+      user ? handleUserId(user.uid) : null;
     });
   }, []);
 

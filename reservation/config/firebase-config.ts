@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
 import { 
   FIREBASE_API_KEY, 
   FIREBASE_AUTH_DOMAIN,
@@ -22,3 +22,5 @@ const firebaseConfig = {
 export const FIREBASE_APP = initializeApp(firebaseConfig);
 export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
 export const FIREBASE_FIRESTORE_DB = getFirestore(FIREBASE_APP);
+
+export const FIREBASE_FLIGHTS = collection(FIREBASE_FIRESTORE_DB, 'flights')

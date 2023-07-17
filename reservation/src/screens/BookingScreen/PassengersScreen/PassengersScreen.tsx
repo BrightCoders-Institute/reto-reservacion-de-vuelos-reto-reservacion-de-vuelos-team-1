@@ -31,7 +31,7 @@ export const PassengersScreen = () => {
           originCity={originCity}
           destinationCity={destinationCity}
           destinationCountry={destinationCountry}
-          date={selectedDate}
+          selectedDate={selectedDate}
         />
       ) : (
         <View />

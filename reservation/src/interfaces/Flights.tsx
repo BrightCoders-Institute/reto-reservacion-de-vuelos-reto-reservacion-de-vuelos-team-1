@@ -1,5 +1,4 @@
 interface Flights {
-  id?: string;
   originCountry?: string;
   originCity?: string;
   destinationCountry?: string;
