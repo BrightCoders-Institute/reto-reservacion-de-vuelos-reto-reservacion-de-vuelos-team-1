@@ -70,8 +70,9 @@ export const RequestReceivedScreen = () => {
         passengers={passengers}
         selectedDate={selectedDate}
       />
-      <Text style={styles.header}>Your request was received.</Text>
-
+      <View style={styles.middleContainer}>
+        <Text style={styles.header}>Your request was received.</Text>
+      </View>
       <PrimaryButton
         title="Finish"
         onPress={() => {

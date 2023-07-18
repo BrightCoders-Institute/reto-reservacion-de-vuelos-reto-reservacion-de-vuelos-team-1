@@ -1,17 +1,18 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   flightContainer: {
     flexDirection: 'column',
     width: 390,
-    height: 150,
+    height: windowHeight * 0.17,
     justifyContent: 'center',
     padding: 10,
   },
   myFlightsContainer: {
     flexDirection: 'column',
     width: 390,
-    height: 150,
+    height: windowHeight * 0.2,
     justifyContent: 'center',
     padding: 10,
     borderBottomWidth: 1.5,

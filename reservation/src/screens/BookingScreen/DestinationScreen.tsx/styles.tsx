@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const windowHeight = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,6 +8,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#FFFFFF',
+  },
+  middleContainer: {
+    alignItems: 'center',
+    height: windowHeight * 0.6,
   },
   header: {
     fontSize: 30,

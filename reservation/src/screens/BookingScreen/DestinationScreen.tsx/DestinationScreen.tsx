@@ -26,8 +26,10 @@ export const DestinationScreen = () => {
       ) : (
         <View />
       )}
-      <Text style={styles.header}>Where will you be flying to?</Text>
-      <DropDownDestination width={wp('70%')} data={placesData} />
+      <View style={styles.middleContainer}>
+        <Text style={styles.header}>Where will you be flying to?</Text>
+        <DropDownDestination width={wp('70%')} data={placesData} />
+      </View>
       <PrimaryButton
         title="Next"
         onPress={() => {

@@ -82,7 +82,7 @@ export const MyFlightsScreen = () => {
     <View style={styles.column}>
       <Text style={styles.screenTitle}>My Flights</Text>
       <AnchorButton
-        title="Logout"
+        title="LogOut"
         onPress={() => {
           handleLogOut();
         }}

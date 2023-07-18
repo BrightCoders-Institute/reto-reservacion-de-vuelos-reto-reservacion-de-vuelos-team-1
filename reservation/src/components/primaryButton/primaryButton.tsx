@@ -22,7 +22,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
   const googleLogo = '../../assets/google-logo.png';
 
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity
         style={[buttonStyles, {width: width}]}
         onPress={isActive ? onPress : null}>
