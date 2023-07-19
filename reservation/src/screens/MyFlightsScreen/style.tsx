@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   column: {
@@ -20,6 +21,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
+  },
+  header: {
+    fontSize: 30,
+    color: '#000000',
+    fontWeight: '800',
+    marginBottom: 5,
+    alignSelf: 'center',
+  },
+  subHeader: {
+    fontSize: 20,
+    color: 'gray',
+    fontWeight: '800',
+    marginBottom: 5,
+    alignSelf: 'center',
+  },
+  noFlightsContainer: {
+    height: windowHeight * 0.8,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  image: {
+    width: 300,
+    height: 300,
+    marginTop: 20,
   },
 });
 

@@ -1,32 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator, Image} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import {AddButton} from '../../components/AddButton/AddButton';
 import FlightsList from '../../components/FlightsList/FlightsList';
 import {FIREBASE_AUTH} from '../../../config/firebase-config';
 import {AnchorButton} from '../../components/AnchorButton/AnchorButton';
-
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/Navigator';
-
 import {getDocs, query, where} from 'firebase/firestore';
 import {FIREBASE_FLIGHTS} from '../../../config/firebase-config';
-
 import {useSelector} from 'react-redux';
 import {RootState} from '../../types/types';
-
 import Flights from '../../interfaces/Flights';
 import Snackbar from 'react-native-snackbar';
 
-import {useDispatch} from 'react-redux';
-
-import {saveUserid} from '../../redux/slices/booking.slice';
-
 export const MyFlightsScreen = () => {
-  const [refresh, setRefresh] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
   const isFocused = useIsFocused();
 
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
@@ -49,56 +40,67 @@ export const MyFlightsScreen = () => {
         backgroundColor: 'red',
       });
       console.log(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchFlights();
-    userIdValue;
-  }, []);
-
-  useEffect(() => {
     if (isFocused) {
-      setRefresh(true);
-    }
-  }, [isFocused]);
-
-  useEffect(() => {
-    if (refresh) {
+      setIsLoading(true);
       fetchFlights();
-      setRefresh(false);
     }
-  }, [refresh]);
+  }, [isFocused, userIdValue]);
 
   const handleLogOut = () => {
     FIREBASE_AUTH.signOut();
   };
 
-  console.log('User flights:', flights);
-
-  console.log(userIdValue);
-
   return (
     <View style={styles.column}>
-      <Text style={styles.screenTitle}>My Flights</Text>
-      <AnchorButton
-        title="LogOut"
-        onPress={() => {
-          handleLogOut();
-        }}
-      />
-      {flights ? (
-        <FlightsList data={flights} />
-      ) : (
+      {isLoading ? (
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#5C6EF8" />
         </View>
+      ) : flights && flights.length > 0 ? (
+        <>
+          <Text style={styles.screenTitle}>My Flights</Text>
+          <AnchorButton
+            title="LogOut"
+            onPress={() => {
+              handleLogOut();
+            }}
+          />
+          <FlightsList data={flights} />
+          <AddButton
+            onPress={() => {
+              navigation.navigate('OriginScreen');
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <AnchorButton
+            title="Logout"
+            onPress={() => {
+              handleLogOut();
+            }}
+          />
+          <View style={styles.noFlightsContainer}>
+            <Text style={styles.header}>No Flights Found</Text>
+            <Text style={styles.subHeader}>Want to flight?</Text>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/noFly.png')}
+            />
+          </View>
+          <AddButton
+            onPress={() => {
+              navigation.navigate('OriginScreen');
+            }}
+          />
+        </>
       )}
-      <AddButton
-        onPress={() => {
-          navigation.navigate('OriginScreen');
-        }}
-      />
     </View>
   );
 };
