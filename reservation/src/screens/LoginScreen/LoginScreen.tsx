@@ -88,7 +88,7 @@ export const LoginScreen = () => {
             />
 
             <PrimaryButton
-              isActive={Object.values(errors).length <= 1} //TODO
+              isActive={Object.values(errors).length <= 1}
               title="Login"
               onPress={() => {
                 handleSubmit();

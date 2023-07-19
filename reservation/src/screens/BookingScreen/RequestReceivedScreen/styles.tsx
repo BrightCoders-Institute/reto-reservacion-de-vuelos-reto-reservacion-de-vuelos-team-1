@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   middleContainer: {
-    height: windowHeight * 0.6,
+    height: windowHeight * 0.5,
     justifyContent: 'center',
   },
   header: {

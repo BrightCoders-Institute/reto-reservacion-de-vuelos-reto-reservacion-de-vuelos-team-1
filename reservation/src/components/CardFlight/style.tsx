@@ -1,5 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   flightContainer: {
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     zIndex: 1,
-    left: 185,
+    right: windowWidth * 0.41,
   },
   destination: {
     alignItems: 'flex-end',

@@ -108,7 +108,7 @@ export const SignUpScreen = () => {
             <View style={[styles.checboxContainer, {width: wp('80%')}]}>
               <CheckBox
                 description="I agree with the Terms and Privacy Policy"
-                handleChange={() => handleChange(!privacyTerms)} //TODO: Handle Change
+                handleChange={() => handleChange(!privacyTerms)}
               />
               <CheckBox
                 description="Subscribe to recieve product updates."

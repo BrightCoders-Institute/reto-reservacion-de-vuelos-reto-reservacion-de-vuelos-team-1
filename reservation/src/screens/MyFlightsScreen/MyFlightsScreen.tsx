@@ -15,6 +15,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../types/types';
 import Flights from '../../interfaces/Flights';
 import Snackbar from 'react-native-snackbar';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
 export const MyFlightsScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -64,13 +65,18 @@ export const MyFlightsScreen = () => {
         </View>
       ) : flights && flights.length > 0 ? (
         <>
-          <Text style={styles.screenTitle}>My Flights</Text>
-          <AnchorButton
-            title="LogOut"
-            onPress={() => {
-              handleLogOut();
-            }}
-          />
+          <View style={styles.logoutBar}>
+            <Text style={styles.screenTitle}>My Flights</Text>
+            <Ionicons
+              style={styles.icon}
+              name="log-out-outline"
+              size={33}
+              color="#5C6EF8"
+              onPress={() => {
+                handleLogOut();
+              }}
+            />
+          </View>
           <FlightsList data={flights} />
           <AddButton
             onPress={() => {
@@ -80,12 +86,18 @@ export const MyFlightsScreen = () => {
         </>
       ) : (
         <>
-          <AnchorButton
-            title="Logout"
-            onPress={() => {
-              handleLogOut();
-            }}
-          />
+          <View style={styles.logoutBar}>
+            <Text style={styles.screenTitle}>My Flights</Text>
+            <Ionicons
+              style={styles.icon}
+              name="log-out-outline"
+              size={33}
+              color="#5C6EF8"
+              onPress={() => {
+                handleLogOut();
+              }}
+            />
+          </View>
           <View style={styles.noFlightsContainer}>
             <Text style={styles.header}>No Flights Found</Text>
             <Text style={styles.subHeader}>Want to flight?</Text>

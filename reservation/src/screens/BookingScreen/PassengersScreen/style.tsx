@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   middleContainer: {
-    flex: 1,
-    height: windowHeight * 0.6,
+    height: windowHeight * 0.5,
+    justifyContent: 'space-between',
   },
   header: {
     fontSize: 30,

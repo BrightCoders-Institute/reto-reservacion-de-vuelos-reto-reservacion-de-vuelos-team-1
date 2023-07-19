@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
   },
   middleContainer: {
     alignItems: 'center',
-    height: windowHeight * 0.6,
+    height: windowHeight * 0.5,
+    justifyContent: 'space-between',
   },
   header: {
     fontSize: 30,
