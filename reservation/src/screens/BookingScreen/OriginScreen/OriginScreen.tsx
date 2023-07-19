@@ -18,8 +18,10 @@ const OriginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Where are you now?</Text>
-      <DropDown width={wp('70%')} data={placesData} />
+      <View style={styles.middleContainer}>
+        <Text style={styles.header}>Where are you now?</Text>
+        <DropDown width={wp('70%')} data={placesData} />
+      </View>
       <PrimaryButton
         title="Next"
         onPress={() => {

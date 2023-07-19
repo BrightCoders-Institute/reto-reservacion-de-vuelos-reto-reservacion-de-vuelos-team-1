@@ -13,7 +13,7 @@ export const PassengersSelector = () => {
   };
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.pickerContainer}>
         <Picker
           style={styles.scroll}
           textSize={30}
@@ -39,20 +39,20 @@ export const PassengersSelector = () => {
             handlePassengers(value);
           }}
         />
-      </View>
-      <View style={styles.containerArrow}>
-        <Ionicons
-          style={styles.arrowLeft}
-          name="caret-forward"
-          size={46}
-          color="#6170F7"
-        />
-        <Ionicons
-          style={styles.arrowRight}
-          name="caret-back"
-          size={46}
-          color="#6170F7"
-        />
+        <View style={styles.containerArrow}>
+          <Ionicons
+            style={styles.arrowLeft}
+            name="caret-forward"
+            size={46}
+            color="#6170F7"
+          />
+          <Ionicons
+            style={styles.arrowRight}
+            name="caret-back"
+            size={46}
+            color="#6170F7"
+          />
+        </View>
       </View>
     </View>
   );

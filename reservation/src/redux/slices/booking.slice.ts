@@ -6,6 +6,7 @@ interface CounterState {
   destinationCountry: string;
   destinationCity: string;
   passengers: string;
+  userId: string;
   selectedDate: string;
 }
 
@@ -16,6 +17,7 @@ const initialState: CounterState = {
   destinationCountry: '',
   destinationCity: '',
   passengers: '',
+  userId: '',
   selectedDate: '',
 };
 
@@ -38,6 +40,9 @@ const counterSlice = createSlice({
     addDestinationCountry: (state, action: PayloadAction<string>) => {
       state.destinationCountry = action.payload;
     },
+    saveUserid: (state, action: PayloadAction<string>) => {
+      state.userId = action.payload;
+    },
     addPassengers: (state, action: PayloadAction<string>) => {
       state.passengers = action.payload;
     },
@@ -52,7 +57,7 @@ export const {
   addOriginCountry,
   addOriginCity,
   addDestinationCity,
-  addDestinationCountry,
+  addDestinationCountry, saveUserid,
   addPassengers,
   addDate,
 } = counterSlice.actions;

@@ -1,14 +1,19 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 130,
-    paddingTop: 50,
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  pickerContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   scroll: {
-    backgroundColor: 'aa',
+    backgroundColor: '#FFFFFF',
     width: 250,
     height: 215,
-    top: 0,
   },
   containerArrow: {
     flexDirection: 'row',
@@ -19,14 +24,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -132,
     zIndex: 1,
-    left: -14,
+    left: 0,
   },
   arrowRight: {
     flex: 1,
     position: 'absolute',
     top: -132,
     zIndex: 1,
-    left: 218,
+    right: 0,
   },
 });
 export default styles;

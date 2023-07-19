@@ -33,8 +33,10 @@ export const SelectDateScreen = () => {
         destinationCity={destinationCity}
         destinationCountry={destinationCountry}
       />
-      <Text style={styles.header}>Select date</Text>
-      <Calendar />
+      <View style={styles.middleContainer}>
+        <Text style={styles.header}>Select date</Text>
+        <Calendar />
+      </View>
       <PrimaryButton
         title="Next"
         onPress={() => {

@@ -12,6 +12,10 @@ import {RequestReceivedScreen} from '../screens/BookingScreen/RequestReceivedScr
 import {onAuthStateChanged, User} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../config/firebase-config';
 
+import {useDispatch} from 'react-redux';
+
+import {saveUserid} from '../redux/slices/booking.slice';
+
 const Stack = createStackNavigator();
 
 export type RootStackParams = {
@@ -29,15 +33,26 @@ export type RootStackParams = {
 export const Navigation = () => {
   const [user, setUser] = useState<User | null>(null);
 
+  const dispatch = useDispatch();
+
+  const handleUserId = (userId: string) => {
+    if (userId) {
+      dispatch(saveUserid(userId));
+    } else {
+      dispatch(saveUserid(''));
+    }
+  };
+
   useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, user => {
       setUser(user);
+      user ? handleUserId(user.uid) : null;
     });
   }, []);
 
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
-      {true ? (
+      {user ? (
         <Stack.Group screenOptions={{headerShown: true}}>
           <Stack.Screen
             name="MyFlightsScreen"

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {Text, View, ActivityIndicator, Alert} from 'react-native';
+import {Text, View, ActivityIndicator} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
 import {CheckBox} from '../../components/Checkbox/Checkbox';
@@ -19,6 +19,8 @@ import {initialValues, signUpSchema} from './SignUpScreenSchema';
 import {FIREBASE_AUTH} from '../../../config/firebase-config';
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 
+import Snackbar from 'react-native-snackbar';
+
 export const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
@@ -32,7 +34,12 @@ export const SignUpScreen = () => {
       auth,
       values.email,
       values.password,
-    ).catch((error: any) => Alert.alert(error.message));
+    ).catch((error: any) =>
+      Snackbar.show({
+        text: 'Invalid credentials',
+        backgroundColor: '#5C6EF8',
+      }),
+    );
 
     if (userCredential && auth.currentUser) {
       try {
@@ -40,7 +47,10 @@ export const SignUpScreen = () => {
           displayName: values.name,
         });
       } catch (error) {
-        console.log(error);
+        Snackbar.show({
+          text: error.message,
+          backgroundColor: '#5C6EF8',
+        });
       }
     }
     if (auth.currentUser) navigation.navigate('MyFlightsScreen');
@@ -98,7 +108,7 @@ export const SignUpScreen = () => {
             <View style={[styles.checboxContainer, {width: wp('80%')}]}>
               <CheckBox
                 description="I agree with the Terms and Privacy Policy"
-                handleChange={() => handleChange(!privacyTerms)} //TODO: Handle Change
+                handleChange={() => handleChange(!privacyTerms)}
               />
               <CheckBox
                 description="Subscribe to recieve product updates."

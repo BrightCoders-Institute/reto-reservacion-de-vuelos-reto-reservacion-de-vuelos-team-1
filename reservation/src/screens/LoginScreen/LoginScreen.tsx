@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {ActivityIndicator, Alert, Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
 import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
@@ -18,6 +18,8 @@ import {signInWithEmailAndPassword} from 'firebase/auth';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/Navigator';
 
+import Snackbar from 'react-native-snackbar';
+
 export const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
@@ -34,7 +36,10 @@ export const LoginScreen = () => {
       const user = response.user;
       if (user) navigation.navigate('MyFlightsScreen');
     } catch (error) {
-      Alert.alert('User not found', 'Please check your credentials');
+      Snackbar.show({
+        text: 'User not found, please check your credentials!',
+        backgroundColor: '#5C6EF8',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +88,7 @@ export const LoginScreen = () => {
             />
 
             <PrimaryButton
-              isActive={Object.values(errors).length <= 1} //TODO
+              isActive={Object.values(errors).length <= 1}
               title="Login"
               onPress={() => {
                 handleSubmit();

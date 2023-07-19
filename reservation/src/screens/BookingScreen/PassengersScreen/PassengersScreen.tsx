@@ -31,13 +31,15 @@ export const PassengersScreen = () => {
           originCity={originCity}
           destinationCity={destinationCity}
           destinationCountry={destinationCountry}
-          date={selectedDate}
+          selectedDate={selectedDate}
         />
       ) : (
         <View />
       )}
-      <Text style={styles.header}>How many passengers?</Text>
-      <PassengersSelector />
+      <View style={styles.middleContainer}>
+        <Text style={styles.header}>How many passengers?</Text>
+        <PassengersSelector />
+      </View>
       <PrimaryButton
         title="Next"
         onPress={() => {

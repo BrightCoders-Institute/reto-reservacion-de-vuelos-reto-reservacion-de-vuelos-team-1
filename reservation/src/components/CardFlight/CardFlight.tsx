@@ -5,23 +5,21 @@ import styles from './style';
 import {useRoute} from '@react-navigation/native';
 
 interface CardFlightProps {
-  id?: string;
   originCountry?: string;
   originCity?: string;
   destinationCountry?: string;
   destinationCity?: string;
   passengers?: string;
-  date?: string;
+  selectedDate?: string;
 }
 
 const CardFlight: React.FC<CardFlightProps> = ({
-  id,
   originCountry,
   originCity,
   destinationCountry,
   destinationCity,
   passengers,
-  date,
+  selectedDate,
 }) => {
   const route = useRoute();
 
@@ -50,7 +48,7 @@ const CardFlight: React.FC<CardFlightProps> = ({
       </View>
 
       <View style={styles.containerDateAndPassengers}>
-        <Text style={styles.text2}>{date}</Text>
+        <Text style={styles.text2}>{selectedDate}</Text>
         {passengers && (
           <Text style={styles.text2}>{`${passengers} passengers`}</Text>
         )}
