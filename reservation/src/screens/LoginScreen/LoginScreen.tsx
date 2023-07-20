@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
-import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../components/MainButton/MainButton';
 
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
@@ -87,7 +87,7 @@ export const LoginScreen = () => {
               isPassword={true}
             />
 
-            <PrimaryButton
+            <MainButton
               isActive={Object.values(errors).length <= 1}
               title="Login"
               onPress={() => {

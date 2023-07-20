@@ -10,7 +10,7 @@ interface ButtonProps {
   isGoogle?: boolean;
 }
 
-export const PrimaryButton: React.FC<ButtonProps> = ({
+export const MainButton: React.FC<ButtonProps> = ({
   title,
   onPress,
   isActive = false,

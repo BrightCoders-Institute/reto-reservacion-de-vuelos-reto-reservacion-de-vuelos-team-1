@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import CardFlight from '../../../components/CardFlight/CardFlight';
-import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../../components/MainButton/MainButton';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -73,7 +73,7 @@ export const RequestReceivedScreen = () => {
       <View style={styles.middleContainer}>
         <Text style={styles.header}>Your request was received.</Text>
       </View>
-      <PrimaryButton
+      <MainButton
         title="Finish"
         onPress={() => {
           handleSubmit();

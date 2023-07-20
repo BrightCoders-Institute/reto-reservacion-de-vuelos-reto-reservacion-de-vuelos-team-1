@@ -4,7 +4,7 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {placesData} from '../../../assets/places_data';
 import {useNavigation} from '@react-navigation/native';
 import CardFlight from '../../../components/CardFlight/CardFlight';
-import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../../components/MainButton/MainButton';
 import {styles} from './styles';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../../navigation/Navigator';
@@ -30,7 +30,7 @@ export const DestinationScreen = () => {
         <Text style={styles.header}>Where will you be flying to?</Text>
         <DropDownDestination width={wp('70%')} data={placesData} />
       </View>
-      <PrimaryButton
+      <MainButton
         title="Next"
         onPress={() => {
           navigation.navigate('SelectDateScreen');
