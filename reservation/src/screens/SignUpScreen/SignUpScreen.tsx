@@ -4,7 +4,7 @@ import {Text, View, ActivityIndicator} from 'react-native';
 
 import {Input} from '../../components/Input/Input';
 import {CheckBox} from '../../components/Checkbox/Checkbox';
-import {PrimaryButton} from '../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../components/MainButton/MainButton';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -115,7 +115,7 @@ export const SignUpScreen = () => {
                 handleChange={() => handleChange(!updateProducts)}
               />
             </View>
-            <PrimaryButton
+            <MainButton
               isActive={Object.values(errors).length <= 1}
               title="Sign up"
               onPress={() => {

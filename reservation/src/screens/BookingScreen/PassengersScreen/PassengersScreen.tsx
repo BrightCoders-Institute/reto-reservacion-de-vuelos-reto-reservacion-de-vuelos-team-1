@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../../navigation/Navigator';
 import CardFlight from '../../../components/CardFlight/CardFlight';
-import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../../components/MainButton/MainButton';
 import styles from './style';
 import {PassengersSelector} from '../../../components/PassengersSelector/PassengersSelector';
 import {useSelector} from 'react-redux';
@@ -40,7 +40,7 @@ export const PassengersScreen = () => {
         <Text style={styles.header}>How many passengers?</Text>
         <PassengersSelector />
       </View>
-      <PrimaryButton
+      <MainButton
         title="Next"
         onPress={() => {
           navigation.navigate('RequestReceivedScreen');

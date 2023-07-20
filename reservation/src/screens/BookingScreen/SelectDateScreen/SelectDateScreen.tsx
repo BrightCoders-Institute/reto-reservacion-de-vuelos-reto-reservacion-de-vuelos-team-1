@@ -5,7 +5,7 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import CardFlight from '../../../components/CardFlight/CardFlight';
 import {Calendar} from '../../../components/Calendar/Calendar';
-import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../../components/MainButton/MainButton';
 
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -37,7 +37,7 @@ export const SelectDateScreen = () => {
         <Text style={styles.header}>Select date</Text>
         <Calendar />
       </View>
-      <PrimaryButton
+      <MainButton
         title="Next"
         onPress={() => {
           navigation.navigate('PassengersScreen');

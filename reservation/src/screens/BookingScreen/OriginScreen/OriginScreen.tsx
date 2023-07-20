@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './styles';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import {PrimaryButton} from '../../../components/PrimaryButton/PrimaryButton';
+import {MainButton} from '../../../components/MainButton/MainButton';
 import {DropDown} from '../../../components/DropDown/DropDown';
 import {placesData} from '../../../assets/places_data';
 import {useNavigation} from '@react-navigation/native';
@@ -22,7 +22,7 @@ const OriginScreen = () => {
         <Text style={styles.header}>Where are you now?</Text>
         <DropDown width={wp('70%')} data={placesData} />
       </View>
-      <PrimaryButton
+      <MainButton
         title="Next"
         onPress={() => {
           navigation.navigate('DestinationScreen');
